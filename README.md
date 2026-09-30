@@ -9,6 +9,7 @@ Send a Slack notification on deployment success or failure using a bot token, wi
 - Automatically sets **success (green)** or **failure (red)** colors.  
 - Includes a clickable **“build logs”** link if deployment fails.  
 - Shows **repo, commit, and actor** in Slack context block.  
+- Includes fallback text for useful desktop and push notification previews.
 - Works as a reusable **composite GitHub Action**.
 
 ---
