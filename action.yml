@@ -26,9 +26,11 @@ runs:
       run: |
         if [ "${{ inputs.is-success }}" = "true" ]; then
           echo "message=Deployment finished successfully 🎉" >> $GITHUB_OUTPUT
+          echo "preview=Deployment finished successfully 🎉" >> $GITHUB_OUTPUT
           echo "color=#36a64f" >> $GITHUB_OUTPUT
         else
           echo "message=Deployment finished with errors ❌. Failed <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|build logs>" >> $GITHUB_OUTPUT
+          echo "preview=Deployment finished with errors ❌" >> $GITHUB_OUTPUT
           echo "color=#ff0000" >> $GITHUB_OUTPUT
         fi
 
@@ -39,6 +41,7 @@ runs:
         channel-id: ${{ inputs.channel-id }}
         payload: |
           {
+            "text": "${{ inputs.environment }} — ${{ steps.slack_message.outputs.preview }}",
             "attachments": [
               {
                 "color": "${{ steps.slack_message.outputs.color }}",
